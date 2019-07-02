@@ -1,0 +1,59 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./script/webpack.config.js",
+    "precommit": "lint-staged",
+    "eslint": "eslint --ext .tsx,.ts --fix ./src",
+    "prettier": "prettier --write './src/**/*.js' './src/**/*.tsx' './src/**/*.css' './src/**/*.scss'"
+  },
+  "keywords": [],
+  "author": "yxxusun <yxxu_web@sina.com>",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^6.5.2",
+    "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "file-loader": "^4.0.0",
+    "husky": "^2.7.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{ts,tsx}": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/{dist,build}/**/*.js",
+      "**/*.min.js"
+    ]
+  }
+}
