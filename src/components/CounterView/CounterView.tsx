@@ -19,7 +19,7 @@ export let CounterView = ({ count, onIncrement, onDecrement }: CounterViewType):
 
 function mapStateToProps(state): CounterViewType {
     return {
-        count: state.count,
+        count: state.counter.count,
     };
 }
 

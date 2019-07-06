@@ -12,17 +12,13 @@
 
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { IInitValues } from 'domain/store.domain';
 import reducer from './reducer/Reducer';
-import epic from './Epic';
+import rootEpic from './epic/Epic';
 
 const epicMiddleware = createEpicMiddleware();
-const initValues: IInitValues = {
-    count: 0,
-};
 
-const store = createStore(reducer, initValues, applyMiddleware(epicMiddleware));
+const store = createStore(reducer, applyMiddleware(epicMiddleware));
 
-epicMiddleware.run(epic);
+epicMiddleware.run(rootEpic);
 
 export default store;

@@ -7,7 +7,7 @@ import store from './store/Store';
 import CounterView from './components/CounterView/CounterView';
 import StopWatchView from './components/StopWatchView/StopWatchView';
 
-import { IBarChartOptions } from './domain/chart.domain';
+import { BarChartOptions } from './domain/chart.domain';
 import BarChart from './utils/chart/BarChart';
 import './main.less';
 
@@ -16,7 +16,7 @@ function App(): ReactElement {
     return (
         <div className="App">
             <div>{count}</div>
-            <button onClick={(): void => setCount(count + 1)}>加一</button>
+            <button onClick={(): void => setCount(count + 1)}>+</button>
             <CounterView />
             <StopWatchView />
         </div>
@@ -33,7 +33,7 @@ ReactDOM.render(
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
 const context: CanvasRenderingContext2D = canvas.getContext('2d');
 
-const options: IBarChartOptions = {
+const options: BarChartOptions = {
     chartZone: [50, 50, 1000, 700], // 标识绘图区域
     yAxisLabel: ['0', '100', '200', '300', '400'], // 标识Y轴坐标
     xAxisLabel: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], // 标识X轴坐标

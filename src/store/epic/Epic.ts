@@ -1,5 +1,6 @@
-import { increment, decrement } from './actions/Actions';
-import * as ActionTypes from './actions/ActionTypes';
+import { combineEpics } from 'redux-observable';
+import { increment, decrement } from '../actions/Actions';
+import * as ActionTypes from '../actions/ActionTypes';
 import { filter, delay, map } from 'rxjs/operators';
 
 const epic = (action$, state$): any => {
@@ -9,7 +10,7 @@ const epic = (action$, state$): any => {
         ),
         delay(1000),
         map((): any => {
-            const count: number = state$.value.count;
+            const count: number = state$.value.counter.count;
             if (count > 0) {
                 return decrement();
             } else if (count < 0) {
@@ -21,4 +22,4 @@ const epic = (action$, state$): any => {
     );
 };
 
-export default epic;
+export default combineEpics(epic);

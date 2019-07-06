@@ -1,8 +1,13 @@
+import { combineReducers } from 'redux';
 import * as ActionTypes from '../actions/ActionTypes';
-import { IInitValues } from 'domain/store.domain';
+import { Counter } from 'domain/store.domain';
 import { Action } from 'store/actions/Actions';
 
-const reducer = (state: IInitValues, action: Action): IInitValues => {
+const initCounter: Counter = {
+    count: 0
+}
+
+const couterReducer = (state = initCounter, action: Action): Counter => {
     switch (action.type) {
         case ActionTypes.INCREMENT:
             return {
@@ -19,4 +24,6 @@ const reducer = (state: IInitValues, action: Action): IInitValues => {
     }
 };
 
-export default reducer;
+export default combineReducers({
+    counter: couterReducer
+});

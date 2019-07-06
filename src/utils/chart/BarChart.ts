@@ -1,13 +1,13 @@
-import { IBarChartOptions } from '../../domain/chart.domain';
+import { BarChartOptions } from '../../domain/chart.domain';
 
 export default class BarChart {
     public context: CanvasRenderingContext2D;
 
-    public options: IBarChartOptions;
+    public options: BarChartOptions;
 
     private offsetXLabel: number;
 
-    public constructor(context: CanvasRenderingContext2D, options: IBarChartOptions) {
+    public constructor(context: CanvasRenderingContext2D, options: BarChartOptions) {
         this.context = context;
         this.options = options;
     }
