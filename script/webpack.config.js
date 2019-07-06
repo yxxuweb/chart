@@ -1,36 +1,34 @@
 'use strict';
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function resolve(url) {
-    return __dirname + '../../' + url;
+    return path.join(__dirname, '/../' + url);
 }
-
 module.exports = {
     mode: 'development',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
     },
     entry: {
-        main: './src/main.ts',
+        main: './src/main.tsx',
+        vendors: [
+            'react',
+            'react-dom',
+        ]
     },
     output: {
         filename: '[name].js',
         path: resolve('dist'),
+        library: 'vendors_lib',
     },
     module: {
         rules: [
             {
-                test: /.ts(x?)$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
-                include: /src/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                    },
-                    {
-                        loader: 'ts-loader',
-                    }
-                ],
+                include: resolve('src'),
+                use: ['babel-loader', 'ts-loader'],
             },
             {
                 test: /.css$/,
@@ -59,4 +57,15 @@ module.exports = {
             }
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html',
+        })
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, "../../dist"),
+        port: 9000, //端口改为9000
+        open:true // 自动打开浏览器，适合懒人
+    },
+    devtool: "source-map",
 };
