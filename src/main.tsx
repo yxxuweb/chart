@@ -1,6 +1,5 @@
 import React, { useState, ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-
 import { Provider } from 'react-redux';
 import store from './store/Store';
 
@@ -11,6 +10,10 @@ import { BarChartOptions } from './domain/chart.domain';
 import BarChart from './utils/chart/BarChart';
 import './main.less';
 
+import CounterViewObserve from './components/CounterViewObserve/CounterViewObserve';
+import Stack from './utils/Stack';
+import LinkedList from './utils/Linked';
+
 function App(): ReactElement {
     const [count, setCount] = useState(0);
     return (
@@ -18,6 +21,7 @@ function App(): ReactElement {
             <div>{count}</div>
             <button onClick={(): void => setCount(count + 1)}>+</button>
             <CounterView />
+            <CounterViewObserve />
             <StopWatchView />
         </div>
     );
@@ -46,3 +50,19 @@ const options: BarChartOptions = {
 };
 
 new BarChart(context, options).drawBarChart();
+
+const stack = new Stack();
+stack.reverse = false;
+stack.push(1);
+stack.push(2);
+stack.push(3);
+stack.pop();
+console.log(stack.stack);
+
+const l = new LinkedList();
+const values = ['A', 'B', 'C'];
+values.forEach((value): void => l.push(value));
+console.log(l);
+console.log(l.pop());
+console.log(l.pop());
+console.log(l.pop());

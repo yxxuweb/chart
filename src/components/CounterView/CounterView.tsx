@@ -17,6 +17,19 @@ export let CounterView = ({ count, onIncrement, onDecrement }: CounterViewType):
     </>
 );
 
+// export class CounterView extends React.Component<CounterViewType> {
+//     // static displayName = "aaaa";
+//     render() {
+//         return (
+//             <>
+//                 <h1>counter: {this.props.count}</h1>
+//                 <button onClick={this.props.onIncrement}>+</button>
+//                 <button onClick={this.props.onDecrement}>-</button>
+//             </>
+//         )
+//     }
+// }
+
 function mapStateToProps(state): CounterViewType {
     return {
         count: state.counter.count,

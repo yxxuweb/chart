@@ -3,6 +3,10 @@ import { Observable, Subscription } from 'rxjs';
 
 const observe = (WrappedComponent, observalbeFactory, defaultState): ComponentType => {
     return class extends React.Component {
+        public static displayName: string = `hoc${WrappedComponent.displayName ||
+            WrappedComponent.name ||
+            'Component'}`;
+
         private props$: Observable<any>;
         private subscription: Subscription;
 

@@ -2,7 +2,7 @@
 import observe from '../../hotComponents/observe';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { scan, map } from 'rxjs/operators';
-import { CounterView, CounterViewType } from 'components/CounterView/CounterView';
+import { CounterView, CounterViewType } from './../CounterView/CounterView';
 
 export default observe(
     CounterView,

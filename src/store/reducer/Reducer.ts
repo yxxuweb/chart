@@ -4,8 +4,8 @@ import { Counter } from 'domain/store.domain';
 import { Action } from 'store/actions/Actions';
 
 const initCounter: Counter = {
-    count: 0
-}
+    count: 0,
+};
 
 const couterReducer = (state = initCounter, action: Action): Counter => {
     switch (action.type) {
@@ -25,5 +25,5 @@ const couterReducer = (state = initCounter, action: Action): Counter => {
 };
 
 export default combineReducers({
-    counter: couterReducer
+    counter: couterReducer,
 });

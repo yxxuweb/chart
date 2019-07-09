@@ -1,23 +1,18 @@
-// import { createStore } from 'redux';
-// import reducer from './reducer/Reducer';
-// import { IInitValues } from 'domain/store.domain';
-
-// const initValues: IInitValues = {
-//     count: 0
-// }
-
-// const store = createStore(reducer, initValues);
-
-// export default store;
-
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import reducer from './reducer/Reducer';
 import rootEpic from './epic/Epic';
 
 const epicMiddleware = createEpicMiddleware();
 
-const store = createStore(reducer, applyMiddleware(epicMiddleware));
+const composeEnhancers =
+    typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+              // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+          })
+        : compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(epicMiddleware)));
 
 epicMiddleware.run(rootEpic);
 
